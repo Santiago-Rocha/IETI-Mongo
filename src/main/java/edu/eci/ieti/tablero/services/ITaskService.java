@@ -14,6 +14,8 @@ public interface ITaskService {
     Task getTaskById(String id);
     
     List<Task> getTasksByUserId(String userId);
+
+    Task addTask(Task task);
     
     Task assignTaskToUser(String taskId, User user);
     

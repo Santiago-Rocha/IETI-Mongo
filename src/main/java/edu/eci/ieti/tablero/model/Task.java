@@ -1,13 +1,31 @@
 package edu.eci.ieti.tablero.model;
 
-import java.util.Date;
-
 public class Task {
     private String title;
     private String description;
     private String status;
-    private Date dueDate;
+    private String dueDate;
     private User responsible;
+
+    /*public Task() {
+        
+    }
+
+    public Task(String title, String description, String status, Date dueDate, User responsible) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.dueDate = dueDate;
+        this.responsible = responsible;
+    }
+
+    public Task(String title, String description, String status, Date dueDate) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.dueDate = dueDate;
+    }*/
+
 
     public String getTitle() {
         return title;
@@ -33,11 +51,11 @@ public class Task {
         this.status = status;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -48,6 +66,9 @@ public class Task {
     public void setResponsible(User responsible) {
         this.responsible = responsible;
     }
+
+    
+    
 
 
     

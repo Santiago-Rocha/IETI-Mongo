@@ -1,13 +1,10 @@
 package edu.eci.ieti.tablero.model;
 
-import java.util.List;
 
 public class Team {
     private String name;
     private String shortName;
     private String description;
-    private List<Board> boards;
-    private List<User> members;
     
 	public String getDescription() {
 		return description;

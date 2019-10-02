@@ -47,4 +47,9 @@ public class TaskServiceImp implements ITaskService {
         return dataBaseRepository.updateTask(task);
     }
 
+    @Override
+    public Task addTask(Task task) {
+        return dataBaseRepository.addTask(task);
+    }
+
 }

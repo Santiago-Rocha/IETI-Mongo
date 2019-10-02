@@ -3,10 +3,13 @@ package edu.eci.ieti.tablero.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import edu.eci.ieti.tablero.Persistence.Repositories.IDataBaseRepository;
 import edu.eci.ieti.tablero.model.Task;
 import edu.eci.ieti.tablero.model.User;
 
+@Component
 public class DataBaseRepositoryImp implements IDataBaseRepository{
     static List<User> users = new ArrayList<User>();
     static List<Task> tasks = new ArrayList<Task>();
@@ -92,6 +95,12 @@ public class DataBaseRepositoryImp implements IDataBaseRepository{
         tasks.set(index, task);
         return tasks.get(index);
 
+    }
+
+    @Override
+    public Task addTask(Task task) {
+        tasks.add(task);
+        return tasks.get(tasks.size()-1);
     }
 
     

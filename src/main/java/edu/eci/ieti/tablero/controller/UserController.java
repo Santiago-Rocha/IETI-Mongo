@@ -1,17 +1,14 @@
 package edu.eci.ieti.tablero.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.eci.ieti.tablero.model.Team;
 import edu.eci.ieti.tablero.model.User;
 import edu.eci.ieti.tablero.services.IUserService;
 
@@ -22,28 +19,29 @@ public class UserController {
     IUserService userService;
 
     @RequestMapping(value="/user", method=RequestMethod.GET)
-    public List<User> getUsersList() {
-        return userService.getUsersList();
+    public ResponseEntity<?> getUsersList() {
+        return new ResponseEntity<>(userService.getUsersList(),HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value="/user{userid}", method=RequestMethod.GET)
-    public User getUserById(@PathVariable String userId) {
-        return userService.getUserById(userId);
+    @RequestMapping(value="/user/{userid}", method=RequestMethod.GET)
+    public ResponseEntity<?> getUserById(@PathVariable String userId) {
+        return new ResponseEntity<>(userService.getUserById(userId),HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value="/user", method=RequestMethod.POST)
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        return new ResponseEntity<>(userService.createUser(user),HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/user", method=RequestMethod.PUT)
-    public User updateUser(User user) {
-        return userService.updateUser(user);
+    @RequestMapping(value="/user/{userid}", method=RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        return new ResponseEntity<>(userService.updateUser(user),HttpStatus.OK);
     }
 
-    @RequestMapping(value="/user", method=RequestMethod.DELETE)
-    public void removeUser(String userId) {
+    @RequestMapping(value="/user/{userid}", method=RequestMethod.DELETE)
+    public ResponseEntity<?> removeUser(@PathVariable String userId) {
         userService.removeUser(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
