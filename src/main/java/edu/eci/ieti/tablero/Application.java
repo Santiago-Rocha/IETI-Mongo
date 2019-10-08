@@ -2,20 +2,28 @@ package edu.eci.ieti.tablero;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 
-import edu.eci.ieti.tablero.controller.TrelloController;
-import edu.eci.ieti.tablero.model.Team;
+import edu.eci.ieti.tablero.config.JwtFilter;
+
 
 @SpringBootApplication
 public class Application {
 
+    @Bean
+	public FilterRegistrationBean jwtFilter()
+	{
+		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		registrationBean.setFilter( new JwtFilter() );
+		registrationBean.addUrlPatterns( "/api/*" );
+
+		return registrationBean;
+	}
+
     public static void main(String[] args) {
-        loadValues();
         SpringApplication.run(Application.class, args);
     }
 
-    public static void loadValues(){
-        Team team =  new Team();
-        TrelloController.trello.add(team);
-    }
+
 }

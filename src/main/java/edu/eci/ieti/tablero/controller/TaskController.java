@@ -14,6 +14,7 @@ import edu.eci.ieti.tablero.model.User;
 import edu.eci.ieti.tablero.services.ITaskService;
 
 @RestController
+@RequestMapping("/api")
 public class TaskController {
 
     @Autowired
