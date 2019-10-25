@@ -8,11 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
     @Id
     private ObjectId _id;
-    private String name;
+	private String name;
     private String userName;
     private String biography;
     private String email;
     private String password;
+    
+    public ObjectId get_id() {
+		return _id;
+	}
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
+	}
 
     public String getName() {
         return name;

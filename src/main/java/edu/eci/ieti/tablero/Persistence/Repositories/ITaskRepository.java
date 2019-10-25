@@ -7,9 +7,11 @@ import edu.eci.ieti.tablero.model.User;
 
 import java.util.List;
 
+
 public interface ITaskRepository extends MongoRepository<Task, String> {
 
-    List<Task> findByResponsible(User responsible);
+    Task findByResponsible(User responsible);
+    Task findBy_id(String id);
     
 
 }

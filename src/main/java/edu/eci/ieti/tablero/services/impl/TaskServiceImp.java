@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.eci.ieti.tablero.Persistence.Repositories.IDataBaseRepository;
+import edu.eci.ieti.tablero.Persistence.Repositories.ITaskRepository;
 import edu.eci.ieti.tablero.model.Task;
 import edu.eci.ieti.tablero.model.User;
 import edu.eci.ieti.tablero.services.ITaskService;
@@ -15,6 +16,9 @@ public class TaskServiceImp implements ITaskService {
 
     @Autowired
     IDataBaseRepository dataBaseRepository;
+
+    @Autowired
+    ITaskRepository taskRepository;
 
     @Override
     public List<Task> geTasksList() {
@@ -49,7 +53,13 @@ public class TaskServiceImp implements ITaskService {
 
     @Override
     public Task addTask(Task task) {
-        return dataBaseRepository.addTask(task);
+        taskRepository.save(task);
+        return taskRepository.findBy_id(task.get_id().toString());
     }
+
+	@Override
+	public Task getByResponsible(User user) {
+		return taskRepository.findByResponsible(user);
+	}
 
 }

@@ -1,6 +1,8 @@
 package edu.eci.ieti.tablero.model;
 
 
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,11 +11,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Task {
     @Id
     private ObjectId _id;
-    private String title;
+	private String title;
     private String description;
     private String status;
-    private String dueDate;
+    private Date dueDate;
+    private int priority;
     private User responsible;
+    
+    public ObjectId get_id() {
+		return _id;
+	}
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
+	}
 
     public String getTitle() {
         return title;
@@ -39,11 +50,11 @@ public class Task {
         this.status = status;
     }
 
-    public String getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -54,6 +65,14 @@ public class Task {
     public void setResponsible(User responsible) {
         this.responsible = responsible;
     }
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
     
     

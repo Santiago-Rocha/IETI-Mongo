@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.eci.ieti.tablero.Persistence.Repositories.IDataBaseRepository;
+import edu.eci.ieti.tablero.Persistence.Repositories.IUserRepository;
 import edu.eci.ieti.tablero.model.User;
 import edu.eci.ieti.tablero.services.IUserService;
 
@@ -15,6 +16,11 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     IDataBaseRepository dataBaseRepository;
+    
+    
+    @Autowired
+    IUserRepository userRepository;
+    
 
     @Override
     public List<User> getUsersList() {
@@ -28,7 +34,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User createUser(User user) {
-        return dataBaseRepository.createUser(user);
+        userRepository.save(user);
+        return userRepository.findBy_id(user.get_id().toString());
     }
 
     @Override
