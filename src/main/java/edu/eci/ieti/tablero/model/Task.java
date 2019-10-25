@@ -1,31 +1,19 @@
 package edu.eci.ieti.tablero.model;
 
+
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Task {
+    @Id
+    private ObjectId _id;
     private String title;
     private String description;
     private String status;
     private String dueDate;
     private User responsible;
-
-    /*public Task() {
-        
-    }
-
-    public Task(String title, String description, String status, Date dueDate, User responsible) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.dueDate = dueDate;
-        this.responsible = responsible;
-    }
-
-    public Task(String title, String description, String status, Date dueDate) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.dueDate = dueDate;
-    }*/
-
 
     public String getTitle() {
         return title;
