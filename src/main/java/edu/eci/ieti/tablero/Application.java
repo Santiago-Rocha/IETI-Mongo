@@ -20,6 +20,13 @@ import edu.eci.ieti.tablero.model.Task;
 import edu.eci.ieti.tablero.model.User;
 import edu.eci.ieti.tablero.services.ITaskService;
 import edu.eci.ieti.tablero.services.IUserService;
+import com.mongodb.client.gridfs.model.GridFSFile;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
+
+import java.net.URL;
+
+
+
 
 
 @SpringBootApplication
@@ -30,6 +37,9 @@ public class Application implements CommandLineRunner  {
 	
 	@Autowired 
 	ITaskService taskService;
+
+	@Autowired
+	GridFsTemplate gridFsTemplate;
 	
     @Bean
 	public FilterRegistrationBean jwtFilter()
@@ -47,6 +57,8 @@ public class Application implements CommandLineRunner  {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
+		// Laboratorio Mongo
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
         MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
         
@@ -62,8 +74,14 @@ public class Application implements CommandLineRunner  {
         	System.out.println(t.getDescription());
         	System.out.println(t.getResponsible().getName());
         }
-        System.out.println("8==============================================D");
+
         System.out.println(tasksAssigned.size());
+
+
+		//Laboratorio Archivo
+		GridFSFile file = gridFsTemplate.findOne(new Query().addCriteria(Criteria.where("filename").is("testing.png")));
+		URL url = new URL("https://i.dailymail.co.uk/i/pix/tm/2007/07/lionking1807_468x325._to_468x312jpeg");
+		gridFsTemplate.store(url.openStream(), "lion.jpeg",  "image/jpeg");*/
 		
 	}
 
