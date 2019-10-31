@@ -69,7 +69,7 @@ public class UserController {
         String password = login.getPassword();
 
         //TODO implement logic to verify user credentials
-        User user = userService.getUserById(username);
+        User user = userService.getUserByUserName(username);
 
         if ( user == null )
         {

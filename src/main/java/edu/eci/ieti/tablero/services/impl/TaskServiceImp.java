@@ -22,7 +22,7 @@ public class TaskServiceImp implements ITaskService {
 
     @Override
     public List<Task> geTasksList() {
-        return dataBaseRepository.geTasksList();
+        return taskRepository.findAll();
     }
 
     @Override

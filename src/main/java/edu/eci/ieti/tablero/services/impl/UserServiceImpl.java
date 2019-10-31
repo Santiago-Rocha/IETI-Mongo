@@ -48,5 +48,10 @@ public class UserServiceImpl implements IUserService {
         dataBaseRepository.removeUser(userId);
 
     }
+
+    @Override
+    public User getUserByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
     
 }

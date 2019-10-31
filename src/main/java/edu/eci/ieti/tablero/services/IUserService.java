@@ -11,6 +11,8 @@ public interface IUserService {
     List<User> getUsersList();
     
     User getUserById(String userId);
+
+    User getUserByUserName(String userName);
     
     User createUser(User user);
     
