@@ -1,14 +1,21 @@
 package edu.eci.ieti.tablero.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
 import edu.eci.ieti.tablero.model.Task;
 import edu.eci.ieti.tablero.model.User;
@@ -21,6 +28,9 @@ public class TaskController {
 
     @Autowired
     ITaskService taskService;
+
+    @Autowired
+    GridFsTemplate gridFsTemplate;
 
     @RequestMapping(value="/task", method=RequestMethod.GET)
     public ResponseEntity<?> getTasks() {
@@ -57,6 +67,12 @@ public class TaskController {
     public ResponseEntity<?> addTask(@RequestBody Task task) {
         System.out.println(task);
         return new ResponseEntity<>(taskService.addTask(task), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/files")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
+        gridFsTemplate.store(file.getInputStream(), file.getOriginalFilename(), file.getContentType());
+        return file.getOriginalFilename();
     }
 
 

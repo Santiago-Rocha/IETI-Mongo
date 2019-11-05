@@ -17,6 +17,7 @@ public class Task {
     private Date dueDate;
     private int priority;
     private User responsible;
+    private String fileUrl;
     
     public ObjectId get_id() {
 		return _id;
@@ -73,6 +74,14 @@ public class Task {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
 
     
     

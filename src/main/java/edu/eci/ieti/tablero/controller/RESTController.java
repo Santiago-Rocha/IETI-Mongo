@@ -36,12 +36,5 @@ public class RESTController {
         }
 
     }
-
-    @CrossOrigin("*")
-    @PostMapping("/files")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
-
-        //TODO implement method
-        return null;
-    }
+    
 }
